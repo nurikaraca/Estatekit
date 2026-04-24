@@ -7,9 +7,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-inter);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -81,6 +80,68 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  
+  --font-sans: var(--font-inter);
+
+  --text-display-size: 4.5rem;       /* 72px */
+  --text-display-height: 4.75rem;    /* 76px */
+  --text-display-weight: 700;
+  --text-display-spacing: -0.045em;
+
+  --text-page-title-size: 3rem;      /* 48px */
+  --text-page-title-height: 3.25rem; /* 52px */
+  --text-page-title-weight: 700;
+  --text-page-title-spacing: -0.04em;
+
+  --text-heading-lg-size: 2.25rem;   /* 36px */
+  --text-heading-lg-height: 2.5rem;  /* 40px */
+  --text-heading-lg-weight: 700;
+  --text-heading-lg-spacing: -0.02em;
+
+  /* 2 - Heading (section titles) */
+  --text-heading-md-size: 1.75rem;   /* 28px */
+  --text-heading-md-height: 2.125rem;/* 34px */
+  --text-heading-md-weight: 600;
+  --text-heading-md-spacing: -0.025em;
+
+  --text-heading-sm-size: 1.125rem;  /* 18px */
+  --text-heading-sm-height: 1.5rem;  /* 24px */
+  --text-heading-sm-weight: 600;
+  --text-heading-sm-spacing: -0.01em;
+
+  /* 3 - Title (card headings) */
+  --text-body-lg-size: 1.3125rem;   /* 21px */
+  --text-body-lg-height: 1.875rem;  /* 30px */
+  --text-body-lg-weight: 400;
+  --text-body-lg-spacing: -0.005em;
+
+  /* 4 - Body (main text) */
+  --text-body-md-size: 1.0625rem;    /* 17px */
+  --text-body-md-height: 1.625rem;   /* 26px */
+  --text-body-md-weight: 400;
+  --text-body-md-spacing: 0em;
+
+  --text-body-sm-size: 1rem;         /* 16px */
+  --text-body-sm-height: 1.5rem;     /* 24px */
+  --text-body-sm-weight: 400;
+  --text-body-sm-spacing: 0em;
+
+  /* 5 - Caption (small descriptions) */
+  --text-caption-size: 0.9375rem; /* 15px */
+  --text-caption-height: 1.375rem;/* 22px */
+  --text-caption-weight: 500;
+  --text-caption-spacing: 0.01em;
+
+  --text-label-size: 1rem;           /* 16px */
+  --text-label-height: 1.375rem;     /* 22px */
+  --text-label-weight: 600;
+  --text-label-spacing: 0em;
+
+  --text-eyebrow-size: 0.8125rem;    /* 13px */
+  --text-eyebrow-height: 1.125rem;   /* 18px */
+  --text-eyebrow-weight: 600;
+  --text-eyebrow-spacing: 0.16em;
 }
 
 .dark {
@@ -123,8 +184,90 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-body-md-size);
+    line-height: var(--text-body-md-height);
   }
   html {
-    @apply font-sans;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   }
+}
+
+@utility text-heading-lg {
+  font-size: var(--text-heading-lg-size);
+  line-height: var(--text-heading-lg-height);
+  font-weight: var(--text-heading-lg-weight);
+  letter-spacing: var(--text-heading-lg-spacing);
+  font-family: var(--font-inter);
+}
+@utility text-display {
+  font-size: clamp(3rem, 7vw, var(--text-display-size));
+  line-height: var(--text-display-height);
+  font-weight: var(--text-display-weight);
+  letter-spacing: var(--text-display-spacing);
+  font-family: var(--font-inter);
+}
+@utility text-page-title {
+  font-size: clamp(2.25rem, 4vw, var(--text-page-title-size));
+  line-height: var(--text-page-title-height);
+  font-weight: var(--text-page-title-weight);
+  letter-spacing: var(--text-page-title-spacing);
+  font-family: var(--font-inter);
+}
+@utility text-heading-md {
+  font-size: var(--text-heading-md-size);
+  line-height: var(--text-heading-md-height);
+  font-weight: var(--text-heading-md-weight);
+  letter-spacing: var(--text-heading-md-spacing);
+  font-family: var(--font-inter);
+}
+@utility text-heading-sm {
+  font-size: var(--text-heading-sm-size);
+  line-height: var(--text-heading-sm-height);
+  font-weight: var(--text-heading-sm-weight);
+  letter-spacing: var(--text-heading-sm-spacing);
+  font-family: var(--font-inter);
+}
+@utility text-body-lg {
+  font-size: var(--text-body-lg-size);
+  line-height: var(--text-body-lg-height);
+  font-weight: var(--text-body-lg-weight);
+  letter-spacing: var(--text-body-lg-spacing);
+  font-family: var(--font-inter);
+}
+@utility text-body-md {
+  font-size: var(--text-body-md-size);
+  line-height: var(--text-body-md-height);
+  font-weight: var(--text-body-md-weight);
+  letter-spacing: var(--text-body-md-spacing);
+  font-family: var(--font-inter);
+}
+@utility text-body-sm {
+  font-size: var(--text-body-sm-size);
+  line-height: var(--text-body-sm-height);
+  font-weight: var(--text-body-sm-weight);
+  letter-spacing: var(--text-body-sm-spacing);
+  font-family: var(--font-inter);
+}
+@utility text-caption {
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-height);
+  font-weight: var(--text-caption-weight);
+  letter-spacing: var(--text-caption-spacing);
+  font-family: var(--font-inter);
+} 
+@utility text-label {
+  font-size: var(--text-label-size);
+  line-height: var(--text-label-height);
+  font-weight: var(--text-label-weight);
+  letter-spacing: var(--text-label-spacing);
+  font-family: var(--font-inter);
+}
+@utility text-eyebrow {
+  font-size: var(--text-eyebrow-size);
+  line-height: var(--text-eyebrow-height);
+  font-weight: var(--text-eyebrow-weight);
+  letter-spacing: var(--text-eyebrow-spacing);
+  text-transform: uppercase;
+  font-family: var(--font-inter);
 }
