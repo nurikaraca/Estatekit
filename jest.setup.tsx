@@ -1,3 +1,4 @@
+import { createElement, type ComponentProps, type ElementType } from "react"
 import type * as React from "react"
 import "@testing-library/jest-dom"
 import { TextDecoder, TextEncoder } from "util"
@@ -85,14 +86,20 @@ URL.revokeObjectURL = jest.fn()
 
 jest.mock("next/image", () => ({
   __esModule: true,
-  default: (props: React.ImgHTMLAttributes<HTMLImageElement> & { src: string }) => {
-    const sanitizedProps = { ...props }
-    delete sanitizedProps.unoptimized
-    delete sanitizedProps.priority
+  default: (props: React.ImgHTMLAttributes<HTMLImageElement> & {
+    priority?: boolean
+    src: string
+    unoptimized?: boolean
+  }) => {
+    const { priority, unoptimized, ...sanitizedProps } = props
+    void priority
+    void unoptimized
+
+    const { alt, src, ...imageProps } = sanitizedProps
 
     return (
       // eslint-disable-next-line @next/next/no-img-element
-      <img alt={sanitizedProps.alt} src={sanitizedProps.src} {...sanitizedProps} />
+      <img alt={alt} src={src} {...imageProps} />
     )
   },
 }))
@@ -128,8 +135,8 @@ jest.mock("motion/react", () => ({
       return <div {...sanitizedProps}>{sanitizedProps.children}</div>
     },
     create:
-      <T extends React.ElementType>(Component: T) =>
-      (props: React.ComponentProps<T> & Record<string, unknown>) => {
+      <T extends ElementType>(Component: T) =>
+      (props: ComponentProps<T> & Record<string, unknown>) => {
         const sanitizedProps = { ...props }
         delete sanitizedProps.animate
         delete sanitizedProps.exit
@@ -140,7 +147,7 @@ jest.mock("motion/react", () => ({
         delete sanitizedProps.whileInView
         delete sanitizedProps.whileTap
 
-        return <Component {...sanitizedProps}>{sanitizedProps.children}</Component>
+        return createElement(Component, sanitizedProps)
       },
   },
   useReducedMotion: () => true,

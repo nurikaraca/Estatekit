@@ -28,7 +28,10 @@ import {
 } from "@/components/ui/select"
 
 const LocationPickerMap = dynamic(
-  () => import("./LocationPickerMap").then((mod) => mod.LocationPickerMap),
+  () =>
+    import("@/components/maps/LocationPickerMap").then(
+      (mod) => mod.LocationPickerMap
+    ),
   {
     ssr: false,
     loading: () => (

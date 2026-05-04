@@ -79,7 +79,9 @@ describe("property service", () => {
   })
 
   it("fetches one property with its related sections and storage images", async () => {
-    const detailBuilder = {
+    const detailBuilder: Record<string, jest.Mock> = {}
+
+    Object.assign(detailBuilder, {
       eq: jest.fn(() => detailBuilder),
       or: jest.fn(() => detailBuilder),
       maybeSingle: jest.fn(() =>
@@ -142,7 +144,7 @@ describe("property service", () => {
           ],
         })
       ),
-    }
+    })
 
     const from = jest.fn((table: string) => {
       if (table === "properties") {

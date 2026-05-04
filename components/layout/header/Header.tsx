@@ -9,7 +9,7 @@ import { getCurrentProfile } from "@/lib/supabase/auth"
 const propertyLinks = [
   { href: "/properties?type=buy", label: "Buy" },
   { href: "/properties?type=rent", label: "Rent" },
-  { href: "/properties?type=sold", label: "Sell" },
+  { href: "/sell", label: "Sell" },
 ]
 
 async function getHeaderProfile() {
